@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "L2Boats",
-    "slug": "L2Boats",
+    "name": "QuizApp",
+    "slug": "QuizApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
