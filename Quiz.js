@@ -1,0 +1,29 @@
+import { Text, View, Image, ScrollView, Alert } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
+import React, {useState} from 'react';
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+
+const Quiz = ({picture}) => {
+    const [ans, setAns] = useState('');
+
+    return(
+        <View>
+            <Picker onValueChange={(value) => setAns(value)}>
+                <Picker.Item label='Dark Souls 1' value='1' />
+                <Picker.Item label='Dark Souls 3' value='2' />
+                <Picker.Item label='Battlefield 1' value='3' />
+                <Picker.Item label='Battlefield 5' value='4' />
+                <Picker.Item label='Call of Duty: Modern Warefare 2' value='5' />
+                <Picker.Item label='Call of Duty: Black Ops 2' value='6' />
+                <Picker.Item label='Skyrim' value='7' />
+                <Picker.Item label='War Thunder' value='8' />
+                <Picker.Item label='Metal Gear Solid: Snake Eater' value='9' />
+                <Picker.Item label='Metal Gear Rising' value='10' />
+            </Picker>
+            <Image source={picture} style={{width: 385, height: 400}} />
+            <Text>What game is this?</Text>
+        </View>
+    );
+};
+
+export default Quiz;
