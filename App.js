@@ -9,7 +9,7 @@ const Title = ({line}) => {
   return(
     <View style={{ marginTop: 25}}>
       <Text style={{fontSize: 30}}>
-        <FontAwesome6 name='anchor' size={30}/>
+        <FontAwesome6 name='gamepad' size={30}/>
         {line}</Text>
     </View>
   );
