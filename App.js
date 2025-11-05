@@ -43,12 +43,11 @@ const App = () => {
 
     let message = '';
     if (correct === 1) {
-      message = `You got ${correct} correct answer!`;
-  } else {
-    message = `You got ${correct} correct answers!`;
-  }
-
-    Alert.alert(`You have ${correct} correct answers!`);
+      message = `You have ${correct} correct answer!`;
+      } else {
+        message = `You have ${correct} correct answers!`;
+        }
+    Alert.alert(message);
   };
   
   return(
