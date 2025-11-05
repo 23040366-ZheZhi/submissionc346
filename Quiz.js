@@ -3,12 +3,16 @@ import {Picker} from '@react-native-picker/picker';
 import React, {useState} from 'react';
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
-const Quiz = ({picture}) => {
+const Quiz = ({picture, setAnswer}) => {
     const [ans, setAns] = useState('');
 
     return(
         <View>
-            <Picker onValueChange={(value) => setAns(value)}>
+            <Picker selectedValue={ans} onValueChange={(value) => {
+                setAns(value);
+                setAnswer(value);
+            }}>
+                <Picker.Item label="Select a game..." value='' />
                 <Picker.Item label='Dark Souls 1' value='1' />
                 <Picker.Item label='Dark Souls 3' value='2' />
                 <Picker.Item label='Battlefield 1' value='3' />
