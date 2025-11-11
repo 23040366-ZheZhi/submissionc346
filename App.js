@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   parent: {
     paddingBottom: 100,
     paddingTop: 20,
+    fontWeight: 20,
   },
 });
 
