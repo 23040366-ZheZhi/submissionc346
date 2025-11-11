@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Image, ScrollView, Alert, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Alert, Button } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Quiz from './Quiz';
@@ -69,5 +69,12 @@ const App = () => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  parent: {
+    paddingBottom: 100,
+    paddingTop: 20,
+  },
+});
 
 export default App;

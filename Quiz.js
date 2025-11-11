@@ -1,4 +1,4 @@
-import { Text, View, Image, ScrollView, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Alert } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import React, {useState} from 'react';
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -29,5 +29,11 @@ const Quiz = ({picture, setAnswer}) => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    smth: {
+
+    },
+});
 
 export default Quiz;
