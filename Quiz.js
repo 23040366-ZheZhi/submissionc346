@@ -7,8 +7,10 @@ const Quiz = ({picture, setAnswer}) => {
     const [ans, setAns] = useState('');
 
     return(
-        <View>
-            <Picker selectedValue={ans} onValueChange={(value) => {
+        <View style={styles.child}>
+            <Text style={styles.qntext}>What game is this?</Text>
+            <Image source={picture} style={{width: 360, height: 225}} />
+            <Picker style = {{alignItems: 'baseline',backgroundColor: 'pink'}} selectedValue={ans} onValueChange={(value) => {
                 setAns(value);
                 setAnswer(value);
             }}>
@@ -24,15 +26,26 @@ const Quiz = ({picture, setAnswer}) => {
                 <Picker.Item label='Metal Gear Solid: Snake Eater' value='9' />
                 <Picker.Item label='Metal Gear Rising' value='10' />
             </Picker>
-            <Image source={picture} style={{width: 385, height: 400}} />
-            <Text>What game is this?</Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    smth: {
-
+    child: {
+        borderWidth: 1,
+        overflow: 'hidden',
+        alignSelf: 'center',
+        width: 360,
+        height: 360,
+        marginBottom: 10,
+    },
+    qntext: {
+        textAlign: 'center',
+        padding: 20,
+        fontWeight: 'bold',
+        fontSize: 30,
+        color: 'white',
+        backgroundColor: 'blue'
     },
 });
 

@@ -7,9 +7,9 @@ import Quiz from './Quiz';
 
 const Title = ({line}) => {
   return(
-    <View style={{ marginTop: 25}}>
-      <Text style={{fontSize: 30}}>
-        <FontAwesome6 name='gamepad' size={30}/>
+    <View style={styles.parent}>
+      <Text style={styles.title}>
+        <FontAwesome6 name='gamepad' size={65} color='skyblue'/>
         {line}</Text>
     </View>
   );
@@ -62,7 +62,7 @@ const App = () => {
       <Quiz picture={require('./img/darksouls.jpg')} setAnswer={setAns7}/>
       <Quiz picture={require('./img/blackops.jpeg')} setAnswer={setAns8}/>
       <Quiz picture={require('./img/bf5.jpg')} setAnswer={setAns9}/>
-      <Quiz picture={require('./img/bf1.jpeg')} setAnswer={setAns10}/>
+      <Quiz picture={require('./img/bf1.jpg')} setAnswer={setAns10}/>
       <View style={{ marginTop: 40, alignItems: 'center' }}>
         <Button title="Submit" onPress={handleSubmit} />
       </View>
@@ -72,10 +72,18 @@ const App = () => {
 
 const styles = StyleSheet.create({
   parent: {
-    paddingBottom: 100,
-    paddingTop: 20,
-    fontWeight: 20,
+    marginTop: 40,
+    alignItems: 'center',
+    marginBottom: 20,
   },
+  title: {
+    width: 500,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 60,
+    fontStyle: 'italic',
+    backgroundColor: 'purple',
+  }
 });
 
 export default App;
