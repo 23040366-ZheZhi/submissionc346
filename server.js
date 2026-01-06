@@ -30,7 +30,7 @@ app.listen(port, () => {
 app.get('/allgames', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute('SELECT * FROM defaultdb.games');
+        const [rows] = await connection.execute('SELECT * FROM games');
         res.json(rows);
     } catch (err) {
         console.error(err);
