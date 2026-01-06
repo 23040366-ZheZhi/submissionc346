@@ -39,7 +39,7 @@ app.get('/allgames', async (req, res) => {
 });
 
 //add new game to database
-/*app.post('/addgame', async (req, res) => {
+app.post('/addgame', async (req, res) => {
     const {game_name, game_link } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
@@ -63,4 +63,4 @@ app.put('/updategame/:id', async (req, res) => {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not update game' });
     }
-});*/
+});
