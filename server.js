@@ -68,7 +68,6 @@ app.put('/updategame/:id', async (req, res) => {
 //delete game
 app.delete('/deletegame/:id', async (req, res) => {
     const { id } = req.params;
-    const { game_name, game_link } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute('DELETE FROM games WHERE id = ?', [id]);
