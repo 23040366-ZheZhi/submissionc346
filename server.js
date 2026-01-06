@@ -26,7 +26,7 @@ app.listen(port, () => {
     console.log('Server running on port', port);
 });
 
-//route
+//display all cards in database
 app.get('/allcards', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
@@ -38,6 +38,7 @@ app.get('/allcards', async (req, res) => {
     }
 });
 
+//add new card to database
 app.post('/addcard', async (req, res) => {
     const {card_name, card_pic } = req.body;
     try {
@@ -50,6 +51,7 @@ app.post('/addcard', async (req, res) => {
     }
 });
 
+//update card 
 app.put('/updatecard/:id', async (req, res) => {
     const { id } = req.params;
     const { card_name, card_pic } = req.body;
@@ -62,5 +64,3 @@ app.put('/updatecard/:id', async (req, res) => {
         res.status(500).json({ message: 'Server error - could not update card' });
     }
 });
-
-//hello world
