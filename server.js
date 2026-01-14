@@ -58,9 +58,9 @@ app.put('/updatecomic/:id', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute('UPDATE comics SET comic_name = ?, comic_pic = ? WHERE id = ?', [comic_name, comic_pic, id]);
-        res.status(200).json({ message: 'Comic updated successfully' });
+        res.status(200).json({ message: 'Comic entry updated successfully' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error - could not update comic' });
+        res.status(500).json({ message: 'Server error - could not update comic entry' });
     }
 });
