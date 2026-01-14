@@ -40,7 +40,7 @@ const App = () => {
     <Text style={styles.title}>{item.comic_name}
     </Text>
 
-    <Image source={{uri: item.comic_pic}} style={{ width: 130, height: 170, resizeMode: 'contain' }} />
+    <Image source={{uri: item.comic_pic}} style={styles.image} />
     </View>
     </TouchableOpacity>
     );
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   view: {
+    flex: 1,
     marginTop: 20,
     margin: 10
   },
@@ -83,7 +84,14 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     flex: 1,
+    margin: 10,
     fontSize: 16
+  },
+  image: {
+    width: 130, 
+    height: 170, 
+    resizeMode: 'contain', 
+    margin: 5 
   }
 });
 
