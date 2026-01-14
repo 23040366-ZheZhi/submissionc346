@@ -44,7 +44,7 @@ app.post('/addcomic', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute('INSERT INTO comics (comic_name, comic_pic) VALUES (?, ?)', [comic_name, comic_pic]);
-        res.status(201).json({ message: 'Comic '+comic_name+' added successfully' });
+        res.status(201).json({ message: comic_name+' added successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not add comic '+comic_name });
