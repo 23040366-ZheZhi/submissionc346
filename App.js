@@ -52,7 +52,7 @@ const App = () => {
       <Text style={styles.text}>Search:</Text>
       <TextInput style={{borderWidth:3, marginBottom: 15}} onChangeText={(text)=>{FilterData(text)}} />
       <Text style={styles.header}>Comics</Text>
-      <FlatList data={mydata} renderItem={renderItem} style={{backgroundColor: 'yellow'}} />
+      <FlatList data={mydata} renderItem={renderItem}/>
     </View>
   );
 }
@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
-    borderWidth: 1
+    borderWidth: 1,
+    backgroundColor: 'yellow'
     
   },
   header: {
