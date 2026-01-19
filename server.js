@@ -61,6 +61,18 @@ app.put('/updatecomic/:id', async (req, res) => {
         res.status(200).json({ message: 'Comic entry updated successfully' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error - could not update comic entry' });
+        res.status(500).json({ message: 'Server error - could not update comic' });
+    }
+});
+
+app.delete('/deletecomic/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        let connection = await mysql.createConnection(dbConfig);
+        await connection.execute('DELETE FROM comics WHERE id ='+id);
+        res.status(201).json({ message: 'Comic '+id+' deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error - could not delete comic '+id });
     }
 });
