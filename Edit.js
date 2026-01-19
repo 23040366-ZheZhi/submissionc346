@@ -14,14 +14,34 @@ const Edit = ({navigation, route}) => {
       <Text> </Text>
       <Button title='Update'
       onPress={()=>{
-          
+          Alert.alert("Are you sure?",
+          "",
+          [
+            {text: "NO", style: "cancel"},
+            {text: "YES", onPress: () => {
+              fetch("https://onlinecardappwebservice-kb7a.onrender.com/updatecomic/"+route.params.id,
+              {
+                method: "PUT",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({comic_name:name, comic_pic:pic})
+              })
+              .then((response) =>{
+                navigation.navigate("Home");
+            })}
+      }])
         }
       }
       />
       <Text> </Text>
       <Button title='Delete'
       onPress={()=>{
-          
+          fetch("https://onlinecardappwebservice-kb7a.onrender.com/deletecomic/"+route.params.id,
+          {
+            method: "DELETE",
+          })
+          .then((response) =>{
+            navigation.navigate("Home");
+          })
         }
       }
       />
