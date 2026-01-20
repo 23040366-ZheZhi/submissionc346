@@ -26,8 +26,8 @@ app.listen(port, () => {
     console.log('Server running on port', port);
 });
 
-//display all cards in database
-app.get('/allcomics', async (req, res) => {
+//display all appliancess in database
+app.get('/allappliances', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         const [rows] = await connection.execute('SELECT * FROM defaultdb.appliances');
@@ -38,8 +38,8 @@ app.get('/allcomics', async (req, res) => {
     }
 });
 
-//add new comic to database
-app.post('/addcomic', async (req, res) => {
+//add new appliance to database
+app.post('/addappliance', async (req, res) => {
     const {appliance_name, watts, hours_used, energy_usage } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
@@ -52,7 +52,7 @@ app.post('/addcomic', async (req, res) => {
 });
 
 //update appliance
-app.put('/updatecomic/:id', async (req, res) => {
+app.put('/updateappliance/:id', async (req, res) => {
     const { id } = req.params;
     const { appliance_name, watts, hours_used, energy_usage } = req.body;
     try {
@@ -65,7 +65,7 @@ app.put('/updatecomic/:id', async (req, res) => {
     }
 });
 
-app.delete('/deletecomic/:id', async (req, res) => {
+app.delete('/deleteappliance/:id', async (req, res) => {
     const { id } = req.params;
     try {
         let connection = await mysql.createConnection(dbConfig);
