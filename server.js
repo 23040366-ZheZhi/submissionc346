@@ -30,7 +30,7 @@ app.listen(port, () => {
 app.get('/allcomics', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute('SELECT * FROM defaultdb.comics');
+        const [rows] = await connection.execute('SELECT * FROM defaultdb.');
         res.json(rows);
     } catch (err) {
         console.error(err);
