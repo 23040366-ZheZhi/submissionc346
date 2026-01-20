@@ -7,9 +7,9 @@ const Add = ({navigation}) => {
   return (
     <View>
       <StatusBar/>
-      <Text>Card Name:</Text>
+      <Text>Comic Name:</Text>
       <TextInput style={{borderWidth:1}} onChangeText={(text)=>setName(text)}/>
-      <Text>Card Pic URL:</Text>
+      <Text>Comic Image URL:</Text>
       <TextInput style={{borderWidth:1}} onChangeText={(text)=>setPic(text)}/>
       <Text> </Text>  
       <Button title='Submit'
