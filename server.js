@@ -30,38 +30,38 @@ app.listen(port, () => {
 app.get('/allcomics', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute('SELECT * FROM defaultdb.');
+        const [rows] = await connection.execute('SELECT * FROM defaultdb.appliances');
         res.json(rows);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error for all comics' });
+        res.status(500).json({ message: 'Server error for all appliances' });
     }
 });
 
 //add new comic to database
 app.post('/addcomic', async (req, res) => {
-    const {comic_name, comic_pic } = req.body;
+    const {appliance_name, watts, hours_used, energy_usage } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('INSERT INTO comics (comic_name, comic_pic) VALUES (?, ?)', [comic_name, comic_pic]);
-        res.status(201).json({ message: comic_name+' added successfully' });
+        await connection.execute('INSERT INTO appliances (appliance_name, watts, hours_used, energy_usage ) VALUES (?, ?, ?, ?)', [appliance_name, watts, hours_used, energy_usage]);
+        res.status(201).json({ message: appliance_name+' added successfully' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error - could not add comic '+comic_name });
+        res.status(500).json({ message: 'Server error - could not add appliance '+appliance_name });
     }
 });
 
-//update comic 
+//update appliance
 app.put('/updatecomic/:id', async (req, res) => {
     const { id } = req.params;
-    const { comic_name, comic_pic } = req.body;
+    const { appliance_name, watts, hours_used, energy_usage } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('UPDATE comics SET comic_name = ?, comic_pic = ? WHERE id = ?', [comic_name, comic_pic, id]);
-        res.status(200).json({ message: 'Comic entry updated successfully' });
+        await connection.execute('UPDATE appliances SET appliance_name = ?, watts = ?, hours_used = ?, energy_usage = ? WHERE id = ?', [appliance_name, watts, hours_used, energy_usage, id]);
+        res.status(200).json({ message: 'Appliance entry updated successfully' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error - could not update comic' });
+        res.status(500).json({ message: 'Server error - could not update appliance' });
     }
 });
 
@@ -69,10 +69,10 @@ app.delete('/deletecomic/:id', async (req, res) => {
     const { id } = req.params;
     try {
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('DELETE FROM comics WHERE id ='+id);
-        res.status(201).json({ message: 'Comic '+id+' deleted successfully' });
+        await connection.execute('DELETE FROM appliances WHERE id ='+id);
+        res.status(201).json({ message: 'Appliance '+id+' deleted successfully' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error - could not delete comic '+id });
+        res.status(500).json({ message: 'Server error - could not delete appliance '+id });
     }
 });
