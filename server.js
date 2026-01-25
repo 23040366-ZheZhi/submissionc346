@@ -21,6 +21,9 @@ const app = express();
 //helps app to read JSON
 app.use(express.json());
 
+//create connection pool
+const pool = mysql.createPool(dbConfig);
+
 //start server
 app.listen(port, () => {
     console.log('Server running on port', port);
@@ -29,8 +32,7 @@ app.listen(port, () => {
 //display all appliancess in database
 app.get('/allappliances', async (req, res) => {
     try {
-        let connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute('SELECT * FROM defaultdb.appliances');
+        const [rows] = await pool.execute('SELECT * FROM defaultdb.appliances');
         res.json(rows);
     } catch (err) {
         console.error(err);
@@ -42,8 +44,7 @@ app.get('/allappliances', async (req, res) => {
 app.post('/addappliance', async (req, res) => {
     const {appliance_name, watts, hours_used } = req.body;
     try {
-        let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('INSERT INTO appliances (appliance_name, watts, hours_used ) VALUES (?, ?, ?)', [appliance_name, watts, hours_used]);
+        await pool.execute('INSERT INTO appliances (appliance_name, watts, hours_used ) VALUES (?, ?, ?)', [appliance_name, watts, hours_used]);
         res.status(201).json({ message: appliance_name+' added successfully' });
     } catch (err) {
         console.error(err);
@@ -56,8 +57,7 @@ app.put('/updateappliance/:id', async (req, res) => {
     const { id } = req.params;
     const { appliance_name, watts, hours_used } = req.body;
     try {
-        let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('UPDATE appliances SET appliance_name = ?, watts = ?, hours_used = ? WHERE id = ?', [appliance_name, watts, hours_used, id]);
+        await pool.execute('UPDATE appliances SET appliance_name = ?, watts = ?, hours_used = ? WHERE id = ?', [appliance_name, watts, hours_used, id]);
         res.status(200).json({ message: 'Appliance entry updated successfully' });
     } catch (err) {
         console.error(err);
@@ -68,8 +68,7 @@ app.put('/updateappliance/:id', async (req, res) => {
 app.delete('/deleteappliance/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('DELETE FROM appliances WHERE id ='+id);
+        await pool.execute('DELETE FROM appliances WHERE id = ?', [id]);
         res.status(201).json({ message: 'Appliance '+id+' deleted successfully' });
     } catch (err) {
         console.error(err);
