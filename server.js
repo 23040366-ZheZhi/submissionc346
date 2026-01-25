@@ -40,10 +40,10 @@ app.get('/allappliances', async (req, res) => {
 
 //add new appliance to database
 app.post('/addappliance', async (req, res) => {
-    const {appliance_name, watts, hours_used, energy_usage } = req.body;
+    const {appliance_name, watts, hours_used } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('INSERT INTO appliances (appliance_name, watts, hours_used, energy_usage ) VALUES (?, ?, ?, ?)', [appliance_name, watts, hours_used, energy_usage]);
+        await connection.execute('INSERT INTO appliances (appliance_name, watts, hours_used ) VALUES (?, ?, ?)', [appliance_name, watts, hours_used]);
         res.status(201).json({ message: appliance_name+' added successfully' });
     } catch (err) {
         console.error(err);
@@ -54,10 +54,10 @@ app.post('/addappliance', async (req, res) => {
 //update appliance
 app.put('/updateappliance/:id', async (req, res) => {
     const { id } = req.params;
-    const { appliance_name, watts, hours_used, energy_usage } = req.body;
+    const { appliance_name, watts, hours_used } = req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('UPDATE appliances SET appliance_name = ?, watts = ?, hours_used = ?, energy_usage = ? WHERE id = ?', [appliance_name, watts, hours_used, energy_usage, id]);
+        await connection.execute('UPDATE appliances SET appliance_name = ?, watts = ?, hours_used = ? WHERE id = ?', [appliance_name, watts, hours_used, id]);
         res.status(200).json({ message: 'Appliance entry updated successfully' });
     } catch (err) {
         console.error(err);
